@@ -307,7 +307,7 @@ BinarySearchTreeX<Comparable>::clone( BinaryNodeX<Comparable> * t ) const
 template <class Comparable>
 int BinarySearchTreeX<Comparable>::height() const
 {
-   return height(root);
+   return height(root) - 1;
 }
 
 template <class Comparable>
@@ -329,7 +329,6 @@ int BinarySearchTreeX<Comparable>::height(BinaryNodeX<Comparable> *t) const
     else {
         return rightHeight;
     }
-
         // to be written by student
 }
 
@@ -377,13 +376,11 @@ template <class Comparable>
 int BinarySearchTreeX<Comparable>::highestFull(BinaryNodeX<Comparable> *t) const
 {
 
-    int height = min(highestFull(t->left), highestFull(t->right));
-
     if(!t->left || !t->right){
         return 1;
     }
     else {
-        return 1 + height;
+    return min(highestFull(t->left), highestFull(t->right)) + 1; //height;
     }
 
   // to be written by student
@@ -398,13 +395,11 @@ int BinarySearchTreeX<Comparable>::deepestFull() const
 template <class Comparable>
 int BinarySearchTreeX<Comparable>::deepestFull(BinaryNodeX<Comparable> *t) const
 {
-    int deep = min(highestFull(t->left), highestFull(t->right));
-
     if(!t->left || !t->right) {
         return 0;
     }
     else {
-        return 1 + deep;
+        return min(highestFull(t->left), highestFull(t->right));
     }
 
   // to be written by student
